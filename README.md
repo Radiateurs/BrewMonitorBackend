@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Beer Monitor 
 
 Steps to run this project:
 

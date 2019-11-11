@@ -1,0 +1,12 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+
+#DB
+*.sqlite
+
+#Package managers
+*-lock.*
