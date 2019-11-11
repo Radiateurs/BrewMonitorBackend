@@ -1,0 +1,23 @@
+{
+   "name": "BeerMonitor",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "bcrypt": "^3.0.6",
+      "body-parser": "^1.18.1",
+      "express": "^4.15.4",
+      "passport": "^0.4.0",
+      "passport-local": "^1.0.0",
+      "reflect-metadata": "^0.1.10",
+      "sqlite3": "^4.0.3",
+      "typeorm": "0.2.19"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts"
+   }
+}
