@@ -20,9 +20,8 @@ export class Fermentor {
     @JoinTable()
     owner: User; 
 
-    @OneToOne(type => Brewing, brewing => brewing.fermentor)
-    @JoinColumn()
-    @Column({ nullable: true })
+    @OneToOne(type => Brewing)
+    @JoinTable()
     brewing: Brewing;
 
     @Column()

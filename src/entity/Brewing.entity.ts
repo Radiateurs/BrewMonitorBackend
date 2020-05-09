@@ -16,7 +16,6 @@ export class Brewing {
 
     @OneToOne(type => Receipe)
     @JoinColumn()
-    @Column({ nullable: true })
     receipe: Receipe;
 
     @Column()
