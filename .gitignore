@@ -1,12 +1,10 @@
 .idea/
 .vscode/
 node_modules/
-build/
+dist/
 tmp/
 temp/
-
-#DB
-*.sqlite
+config/config.json
 
 #Package managers
 *-lock.*
