@@ -1,10 +1,13 @@
 {
-   "type": "sqlite",
-   "database": "database.sqlite",
+   "type": "postgres",
+   "database": "beer-monitor",
+   "host": "db",
+   "username": "test",
+   "password": "test",
    "synchronize": true,
-   "logging": false,
+   "logging": true,
    "entities": [
-      "src/entity/**/*.ts"
+      "dist/**/*.entity.js"
    ],
    "migrations": [
       "src/migration/**/*.ts"

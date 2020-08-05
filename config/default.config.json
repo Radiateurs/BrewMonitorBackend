@@ -1,0 +1,6 @@
+{
+    "callback": {
+        "google": "http://localhost:3030/auth/google",
+        "facebook": "http://localhost:3030/auth/facebook"
+    }
+}
