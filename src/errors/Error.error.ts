@@ -11,6 +11,6 @@ export class MainError {
         return ({
             error: this.type,
             message: this.message
-        })
+        });
     }
 }

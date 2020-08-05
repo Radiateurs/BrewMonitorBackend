@@ -1,4 +1,4 @@
-import { MainError } from './Error.error';
+import { MainError } from "./Error.error";
 
 export class NotFoundError extends MainError {
 
