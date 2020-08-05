@@ -19,7 +19,7 @@ export class ReceipeController {
     }
 
     static remove = async function(request: Request, response: Response, next: NextFunction) {
-        let receipeToRemove = await this.receipeRepository.findOne(request.params.id);
+        const receipeToRemove = await this.receipeRepository.findOne(request.params.id);
         await this.receipeRepository.remove(receipeToRemove);
     }
 

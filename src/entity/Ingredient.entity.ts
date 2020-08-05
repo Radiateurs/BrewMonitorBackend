@@ -5,15 +5,15 @@ import { PassThrough } from "stream";
 export class Ingredient {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Column()
-    name: string;
+    public name: string;
 
     @Column()
-    supplier: string;
+    public supplier: string;
 
     @Column()
-    origin: string;
+    public origin: string;
 
 }

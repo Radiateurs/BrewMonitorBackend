@@ -8,25 +8,25 @@ import { User } from "./User.entity";
 export class Fermentor {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Column()
-    name: string;
+    public name: string;
 
     @Column()
-    capacity: number;
+    public capacity: number;
 
     @ManyToOne(type => User, owner => owner.fermentors)
     @JoinTable()
-    owner: User; 
+    public owner: User; 
 
     @OneToOne(type => Brewing)
     @JoinTable()
-    brewing: Brewing;
+    public brewing: Brewing;
 
     @Column()
-    temperature: Number;
+    public temperature: number;
 
     @Column()
-    token: string;
+    public token: string;
 }

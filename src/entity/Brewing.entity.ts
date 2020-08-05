@@ -8,21 +8,21 @@ import { Fermentor } from "./Fermentor.entity";
 export class Brewing {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @OneToOne(type => Fermentor, fermentor => fermentor.brewing)
     @JoinTable()
-    fermentor: Fermentor;
+    public fermentor: Fermentor;
 
     @OneToOne(type => Receipe)
     @JoinColumn()
-    receipe: Receipe;
+    public receipe: Receipe;
 
     @Column()
     @CreateDateColumn()
-    started: Date;
+    public started: Date;
 
     @OneToOne(type => User)
     @JoinColumn()
-    owner: User;
+    public owner: User;
 }

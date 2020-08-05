@@ -19,7 +19,7 @@ export class BrewingController {
     }
 
     static remove = async function(request: Request, response: Response, next: NextFunction) {
-        let brewingToRemove = await this.brewingRepository.findOne(request.params.id);
+        const brewingToRemove = await this.brewingRepository.findOne(request.params.id);
         await this.brewingRepository.remove(brewingToRemove);
     }
 

@@ -19,7 +19,7 @@ export class IngredientController {
     }
 
     static remove = async function(request: Request, response: Response, next: NextFunction) {
-        let ingredientToRemove = await this.ingredientRepository.findOne(request.params.id);
+        const ingredientToRemove = await this.ingredientRepository.findOne(request.params.id);
         await this.ingredientRepository.remove(ingredientToRemove);
     }
 

@@ -19,7 +19,7 @@ export class FermentorController {
     }
 
     static remove = async function(request: Request, response: Response, next: NextFunction) {
-        let fermentorToRemove = await this.fermentorRepository.findOne(request.params.id);
+        const fermentorToRemove = await this.fermentorRepository.findOne(request.params.id);
         await this.fermentorRepository.remove(fermentorToRemove);
     }
 

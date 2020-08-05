@@ -1,30 +1,30 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany, JoinTable} from "typeorm";
 import { PassThrough } from "stream";
-import { User } from "./User.entity"
-import { ReceipeIngredient } from "./ReceipeIngredient.entity"
+import { User } from "./User.entity";
+import { ReceipeIngredient } from "./ReceipeIngredient.entity";
 
 @Entity()
 export class Receipe {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Column()
-    name: string;
+    public name: string;
 
     @OneToOne(type => User)
     @JoinColumn()
-    author: User;
+    public author: User;
 
     @Column()
-    creationDate: string;
+    public creationDate: string;
 
     @OneToOne(type => ReceipeIngredient)  
-    ingredients: ReceipeIngredient[];
+    public ingredients: ReceipeIngredient[];
 
     @Column()
-    dayFermenting: number;
+    public dayFermenting: number;
 
     @Column()
-    dayBotteling: number;
+    public dayBotteling: number;
 }

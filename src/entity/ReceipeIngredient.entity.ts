@@ -1,20 +1,20 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany} from "typeorm";
 import { PassThrough } from "stream";
-import { Ingredient } from "./Ingredient.entity"
+import { Ingredient } from "./Ingredient.entity";
 
 @Entity()
 export class ReceipeIngredient {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @OneToOne(type => Ingredient)
     @JoinColumn()
-    ingredient: Ingredient;
+    public ingredient: Ingredient;
 
     @Column()
-    quantity: number;
+    public quantity: number;
 
     @Column()
-    unit: string;
+    public unit: string;
 }
