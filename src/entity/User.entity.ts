@@ -40,6 +40,6 @@ export class User {
     @OneToMany(type => Fermentor, fermentor => fermentor.owner, { nullable: true })
     public fermentors: Fermentor[];
 
-    @Column({ array: true, nullable: true })
-    public tokens: string;
+    @Column({ nullable: true })
+    public token: string;
 }
