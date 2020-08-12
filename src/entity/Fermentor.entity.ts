@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Double, OneToMany, ManyToOne, JoinTable} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Double, OneToMany, ManyToOne, JoinTable } from "typeorm";
 import { PassThrough } from "stream";
 import { Brewing } from "./Brewing.entity";
 import { User } from "./User.entity";
