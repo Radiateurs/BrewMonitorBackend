@@ -6,6 +6,7 @@ const BrewingRouter = Router();
 BrewingRouter.get("/", BrewingController.getAll);
 BrewingRouter.get("/:id([0-9]+)", BrewingController.getOne);
 BrewingRouter.post("/", BrewingController.create);
+BrewingRouter.put("/", BrewingController.update);
 BrewingRouter.delete("/", BrewingController.remove);
 
 export default BrewingRouter;
