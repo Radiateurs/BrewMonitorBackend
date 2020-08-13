@@ -13,7 +13,7 @@ export class BrewingController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static getAll = async function(request: Request, response: Response, next: NextFunction) {
+    static getAll = (request: Request, response: Response, next: NextFunction) => {
         const brewingRepository = getRepository(Brewing);
         return brewingRepository.find().then(brewings => {
             response.status(200).send(brewings);
@@ -32,7 +32,7 @@ export class BrewingController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static getOne = async function(request: Request, response: Response, next: NextFunction) {
+    static getOne = (request: Request, response: Response, next: NextFunction) => {
         const brewingRepository = getRepository(Brewing);
         return brewingRepository.findOne(request.params.id).then(brewing => {
             if (brewing === undefined) {
@@ -55,7 +55,7 @@ export class BrewingController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 201) false on every other cases.
      */
-    static create = async function(request: Request, response: Response, next: NextFunction) {
+    static create = (request: Request, response: Response, next: NextFunction) => {
         const brewingRepository = getRepository(Brewing);
         return brewingRepository.save(request.body).then(brewing => {
             response.status(201).send(brewing);
@@ -74,7 +74,7 @@ export class BrewingController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static update = async function(request: Request, response: Response, next: NextFunction) {
+    static update = (request: Request, response: Response, next: NextFunction) => {
         const brewingRepository = getRepository(Brewing);
         // Get the entry by ID
         return brewingRepository.findOne(request.body.id).then(brewing => {
@@ -82,7 +82,7 @@ export class BrewingController {
             brewing.fermentor = request.body.fermentor;
             brewing.started = request.body.started;
             brewing.receipe = request.body.receipe;
-            brewing.user = request.body.user;
+            brewing.owner = request.body.owner;
             // save the modified entry
             return brewingRepository.save(brewing).then(brewing => {
                 response.status(200).send(brewing);
@@ -105,7 +105,7 @@ export class BrewingController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static remove = async function(request: Request, response: Response, next: NextFunction) {
+    static remove = (request: Request, response: Response, next: NextFunction) => {
         const brewingRepository = getRepository(Brewing);
         // Get the entry by its ID
         return brewingRepository.findOne(request.body.id).then(brewingToRemove => {

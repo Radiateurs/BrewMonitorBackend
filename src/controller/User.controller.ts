@@ -6,7 +6,7 @@ import { InternalError } from "../errors/InternalError.error";
 
 export class UserController {
 
-    static getAll = async function(request: Request, response: Response, next: NextFunction) {
+    static getAll = (request: Request, response: Response, next: NextFunction) => {
         const userRepository = getRepository(User);
         return userRepository.find().then(users => {
             const toSend: any[] = [];
@@ -25,7 +25,7 @@ export class UserController {
         });
     }
 
-    static getOne = async function(request: Request, response: Response, next: NextFunction) {
+    static getOne = (request: Request, response: Response, next: NextFunction) => {
         const userRepository = getRepository(User);
         return userRepository.findOne(request.params.id).then(user => {
             if (user == undefined) {
@@ -48,7 +48,7 @@ export class UserController {
      * @returns {bool} true on success. False on error
      * @send 200 on success. 400 on error
      */
-    static create = async function(request: Request, response: Response, next: NextFunction) {
+    static create = (request: Request, response: Response, next: NextFunction) => {
         const userRepository = getRepository(User);
         return userRepository.save(request.body).then(retVal => {
             response.status(200).send(retVal);
@@ -58,7 +58,7 @@ export class UserController {
         });
     }
 
-    static remove = async function(request: Request, response: Response, next: NextFunction) {
+    static remove = (request: Request, response: Response, next: NextFunction) => {
         const userRepository = getRepository(User);
         return userRepository.findOne(request.body.id).then(userToRemove => {
             if (userToRemove == undefined) {

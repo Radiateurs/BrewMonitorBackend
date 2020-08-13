@@ -5,7 +5,7 @@ import { NotFoundError, InternalError } from "../errors/Errors.error";
 
 export class ReceipeIngredientController {
 
-    static getAll = async function(request: Request, response: Response, next: NextFunction) {
+    static getAll = (request: Request, response: Response, next: NextFunction) => {
         const receipeIngredientRepository = getRepository(ReceipeIngredient);
         return receipeIngredientRepository.find().then(receipeIngredients => {
             response.status(200).send(receipeIngredients);
@@ -16,7 +16,7 @@ export class ReceipeIngredientController {
         });
     }
 
-    static getOne = async function(request: Request, response: Response, next: NextFunction) {
+    static getOne = (request: Request, response: Response, next: NextFunction) => {
         const receipeIngredientRepository = getRepository(ReceipeIngredient);
         return receipeIngredientRepository.findOne(request.params.id).then(receipeIngredient => {
             if (receipeIngredient === undefined) {
@@ -31,7 +31,7 @@ export class ReceipeIngredientController {
         });
     }
 
-    static create = async function(request: Request, response: Response, next: NextFunction) {
+    static create = (request: Request, response: Response, next: NextFunction) => {
         const receipeIngredientRepository = getRepository(ReceipeIngredient);
         return receipeIngredientRepository.save(request.body).then(receipeIngredient => {
             response.status(200).send(receipeIngredient);
@@ -42,7 +42,7 @@ export class ReceipeIngredientController {
         });
     }
 
-    static remove = async function(request: Request, response: Response, next: NextFunction) {
+    static remove = (request: Request, response: Response, next: NextFunction) => {
         const receipeIngredientRepository = getRepository(ReceipeIngredient);
         return receipeIngredientRepository.findOne(request.body.id).then(receipeIngredientToRemove => {
             if (receipeIngredientToRemove === undefined) {

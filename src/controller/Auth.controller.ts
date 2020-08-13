@@ -6,12 +6,12 @@ import { BadRequestError } from "../errors/BadRequest.error";
 
 export class AuthController {
 
-    static connect = async function(request: Request, response: Response, next: NextFunction) {
+    static connect = async (request: Request, response: Response, next: NextFunction) => {
         // if (request.body.hasOwnProperty('email') == true && request.body.hasOwnProperty('pass') == true) {
         //     return response.status(400).send(new BadRequestError('connect', 'The body must contain a valid key \'pass\' and \'email\''))
         // }
 
-        passport.authenticate("local", (err: Error, user: any) => {
+        await passport.authenticate("local", (err: Error, user: any) => {
             if (err) { return next(err); }
             if (!user) {
                 return response.status(401).send(new BadRequestError("connect", "Wrong password or email"));
@@ -23,8 +23,9 @@ export class AuthController {
         })(request, response, next);        
     }
 
-    static disconnect = async function(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.save(request.body);
+    static disconnect = async (request: Request, response: Response, next: NextFunction) => {
+        const userRepository = getRepository(User);
+        return await userRepository.save(request.body);
     }
 
 }

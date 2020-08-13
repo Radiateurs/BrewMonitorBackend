@@ -5,7 +5,7 @@ import { NotFoundError, InternalError } from "../errors/Errors.error";
 
 export class ReceipeController {
 
-    static getAll = async function(request: Request, response: Response, next: NextFunction) {
+    static getAll = (request: Request, response: Response, next: NextFunction) => {
         const receipeRepository = getRepository(Receipe);
         return receipeRepository.find().then(receipes => {
             response.status(200).send(receipes);
@@ -16,7 +16,7 @@ export class ReceipeController {
         });
     }
 
-    static getOne = async function(request: Request, response: Response, next: NextFunction) {
+    static getOne = (request: Request, response: Response, next: NextFunction) => {
         const receipeRepository = getRepository(Receipe);
         return receipeRepository.findOne(request.params.id).then(receipe => {
             if (receipe === undefined) {
@@ -31,7 +31,7 @@ export class ReceipeController {
         });
     }
 
-    static create = async function(request: Request, response: Response, next: NextFunction) {
+    static create = (request: Request, response: Response, next: NextFunction) => {
         const receipeRepository = getRepository(Receipe);
         return receipeRepository.save(request.body).then(receipe => {
             response.status(200).send(receipe);
@@ -42,7 +42,7 @@ export class ReceipeController {
         });
     }
 
-    static remove = async function(request: Request, response: Response, next: NextFunction) {
+    static remove = (request: Request, response: Response, next: NextFunction) => {
         const receipeRepository = getRepository(Receipe);
         return receipeRepository.findOne(request.body.id).then(receipeToRemove => {
             if (receipeToRemove === undefined) {

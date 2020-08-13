@@ -13,7 +13,7 @@ export class FermentorController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static getAll = async function(request: Request, response: Response, next: NextFunction) {
+    static getAll = (request: Request, response: Response, next: NextFunction) => {
         const fermentorRepository = getRepository(Fermentor);
         return fermentorRepository.find().then(fermentors => {
             response.status(200).send(fermentors);
@@ -32,7 +32,7 @@ export class FermentorController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static getOne = async function(request: Request, response: Response, next: NextFunction) {
+    static getOne = (request: Request, response: Response, next: NextFunction) => {
         const fermentorRepository = getRepository(Fermentor);
         return fermentorRepository.findOne(request.params.id).then(fermentor => {
             if (fermentor === undefined) {
@@ -55,7 +55,7 @@ export class FermentorController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 201) false on every other cases.
      */
-    static create = async function(request: Request, response: Response, next: NextFunction) {
+    static create = (request: Request, response: Response, next: NextFunction) => {
         const fermentorRepository = getRepository(Fermentor);
         return fermentorRepository.save(request.body).then(fermentor => {
             response.status(200).send(fermentor);
@@ -74,7 +74,7 @@ export class FermentorController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static update = async function(request: Request, response: Response, next: NextFunction) {
+    static update = (request: Request, response: Response, next: NextFunction) => {
         const fermentorRepository = getRepository(Fermentor);
         // Get the entry by ID
         return fermentorRepository.findOne(request.body.id).then(fermentor => {
@@ -107,7 +107,7 @@ export class FermentorController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static remove = async function(request: Request, response: Response, next: NextFunction) {
+    static remove = (request: Request, response: Response, next: NextFunction) => {
         const fermentorRepository = getRepository(Fermentor);
         return fermentorRepository.findOne(request.body.id).then(fermentorToRemove => {
             if (fermentorToRemove === undefined) {

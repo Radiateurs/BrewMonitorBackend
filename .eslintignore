@@ -7,3 +7,4 @@ coverage/*
 **/*.d.ts
 # 3rd party libs
 /src/public/
+jest.config.js

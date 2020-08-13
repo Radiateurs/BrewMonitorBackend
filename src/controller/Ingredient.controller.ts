@@ -5,7 +5,7 @@ import { NotFoundError, InternalError } from "../errors/Errors.error";
 
 export class IngredientController {
 
-    static getAll = async function(request: Request, response: Response, next: NextFunction) {
+    static getAll = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.find().then(ingredients => {
             response.status(200).send(ingredients);
@@ -16,7 +16,7 @@ export class IngredientController {
         });
     }
 
-    static getOne = async function(request: Request, response: Response, next: NextFunction) {
+    static getOne = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.findOne(request.params.id).then(ingredient => {
             if (ingredient === undefined) {
@@ -31,7 +31,7 @@ export class IngredientController {
         });
     }
 
-    static create = async function(request: Request, response: Response, next: NextFunction) {
+    static create = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.save(request.body).then(ingredient => {
             response.status(200).send(ingredient);
@@ -42,7 +42,7 @@ export class IngredientController {
         });
     }
 
-    static remove = async function(request: Request, response: Response, next: NextFunction) {
+    static remove = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.findOne(request.body.id).then(ingredientToRemove => {
             if (ingredientToRemove === undefined) {

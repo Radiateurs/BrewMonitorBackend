@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import "reflect-metadata";
 import {createConnection} from "typeorm";
 import express from "express";
@@ -12,7 +13,7 @@ import {User} from "./entity/User.entity";
 
 import * as passeportConf from "./config/passport.config";
 
-createConnection().then(async connection => {
+createConnection().then(connection => {
 
     console.log("Connected to DB!");
 
