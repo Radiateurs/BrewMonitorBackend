@@ -5,6 +5,14 @@ import { NotFoundError, InternalError } from "../errors/Errors.error";
 
 export class IngredientController {
 
+    /**
+     * @fn getAll
+     * @desc get every entries of the table
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 200) false on every other cases.
+     */
     static getAll = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.find().then(ingredients => {
@@ -16,6 +24,14 @@ export class IngredientController {
         });
     }
 
+    /**
+     * @fn getOne
+     * @desc Get an entry by its ID
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 200) false on every other cases.
+     */
     static getOne = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.findOne(request.params.id).then(ingredient => {
@@ -31,6 +47,14 @@ export class IngredientController {
         });
     }
 
+    /**
+     * @fn create
+     * @desc Create an new entry
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 201) false on every other cases.
+     */
     static create = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.save(request.body).then(ingredient => {
@@ -42,6 +66,44 @@ export class IngredientController {
         });
     }
 
+    /**
+     * @fn update
+     * @desc Update an entry by its ID
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 200) false on every other cases.
+     */
+    static update = (request: Request, response: Response, next: NextFunction) => {
+        const ingredientRepository = getRepository(Ingredient);
+        // Get the entry by ID
+        return ingredientRepository.findOne(request.body.id).then(ingredient => {
+            // Modify the field of the entry
+            ingredient.name = request.body.name;
+            ingredient.supplier = request.body.supplier;
+            ingredient.origin = request.body.origin;
+            // save the modified entry
+            return ingredientRepository.save(ingredient).then(ingredient => {
+                response.status(200).send(ingredient);
+                return true;
+            }).catch(err => {
+                response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
+                return false;
+            });
+        }).catch(err => {
+            response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
+            return false;
+        });
+    }
+
+    /**
+     * @fn remove
+     * @desc Erase an entry by its ID
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 200) false on every other cases.
+     */
     static remove = (request: Request, response: Response, next: NextFunction) => {
         const ingredientRepository = getRepository(Ingredient);
         return ingredientRepository.findOne(request.body.id).then(ingredientToRemove => {
