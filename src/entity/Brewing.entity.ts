@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, JoinColumn, CreateDateColumn, JoinTable} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, JoinColumn, CreateDateColumn, JoinTable } from "typeorm";
 import { PassThrough } from "stream";
 import { Receipe } from "./Receipe.entity";
 import { User } from "./User.entity";
