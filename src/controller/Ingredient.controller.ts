@@ -74,26 +74,22 @@ export class IngredientController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static update = (request: Request, response: Response, next: NextFunction) => {
+    static update = async function(request: Request, response: Response, next: NextFunction) {
         const ingredientRepository = getRepository(Ingredient);
-        // Get the entry by ID
-        return ingredientRepository.findOne(request.body.id).then(ingredient => {
-            // Modify the field of the entry
-            ingredient.name = request.body.name;
-            ingredient.supplier = request.body.supplier;
-            ingredient.origin = request.body.origin;
-            // save the modified entry
-            return ingredientRepository.save(ingredient).then(ingredient => {
-                response.status(200).send(ingredient);
-                return true;
-            }).catch(err => {
-                response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
-                return false;
-            });
+        const oldIngredient = await ingredientRepository.findOne(request.body.id);
+        if (oldIngredient == undefined) {
+            response.status(404).send(new NotFoundError("Ingredient", `Ingredient ${request.body.id} was not found`).GenerateError());
+            return false;
+        }
+        ingredientRepository.merge(oldIngredient, request.body);
+        ingredientRepository.save(oldIngredient).then(updatedIngredient => {
+            response.status(200).send(updatedIngredient);
+            return true;
         }).catch(err => {
-            response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
+            response.status(400).send(new InternalError("Creating a new entry on Ingredient", err).GenerateError());
             return false;
         });
+
     }
 
     /**

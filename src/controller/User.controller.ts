@@ -44,20 +44,55 @@ export class UserController {
 
     /**
      * @fn create
-     * @desc Create a user and adds it in the DB.
-     * @returns {bool} true on success. False on error
-     * @send 200 on success. 400 on error
+     * @desc Create an new entry
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 201) false on every other cases.
      */
     static create = (request: Request, response: Response, next: NextFunction) => {
         const userRepository = getRepository(User);
         return userRepository.save(request.body).then(retVal => {
-            response.status(200).send(retVal);
+            response.status(201).send(retVal);
         }).catch(err => {
             response.status(400).send(new InternalError("Database", err).GenerateError());
             return false;
         });
     }
 
+    /**
+     * @fn update
+     * @desc Update an entry by its ID
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 200) false on every other cases.
+     */
+    static update = async function(request: Request, response: Response, next: NextFunction) {
+        const userRepository = getRepository(User);
+        const oldUser = await userRepository.findOne(request.body.id);
+        if (oldUser == undefined) {
+            response.status(404).send(new NotFoundError("User", `User ${request.body.id} was not found`).GenerateError());
+            return false;
+        }
+        userRepository.merge(oldUser, request.body);
+        userRepository.save(oldUser).then(updatedUser => {
+            response.status(200).send(updatedUser);
+            return true;
+        }).catch(err => {
+            response.status(400).send(new InternalError("Creating a new entry on User", err).GenerateError());
+            return false;
+        });
+    }
+
+    /**
+     * @fn remove
+     * @desc Erase an entry by its ID
+     * @param {Request} request express request object
+     * @param {Response} response express request object
+     * @param {NextFunction} next express next function
+     * @return {bool} true on success (status code == 200) false on every other cases.
+     */
     static remove = (request: Request, response: Response, next: NextFunction) => {
         const userRepository = getRepository(User);
         return userRepository.findOne(request.body.id).then(userToRemove => {

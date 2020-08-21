@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { Fermentor } from "../entity/Fermentor.entity";
 import { NotFoundError, InternalError } from "../errors/Errors.error";
@@ -74,27 +74,19 @@ export class FermentorController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static update = (request: Request, response: Response, next: NextFunction) => {
+    static update = async function(request: Request, response: Response, next: NextFunction){
         const fermentorRepository = getRepository(Fermentor);
-        // Get the entry by ID
-        return fermentorRepository.findOne(request.body.id).then(fermentor => {
-            // Modify the field of the entry
-            fermentor.name = request.body.name;
-            fermentor.capacity = request.body.capacity;
-            fermentor.owner = request.body.owner;
-            fermentor.brewing = request.body.brewing;
-            fermentor.temperature = request.body.temperature;
-            fermentor.token = request.body.token;
-            // save the modified entry
-            return fermentorRepository.save(fermentor).then(fermentor => {
-                response.status(200).send(fermentor);
-                return true;
-            }).catch(err => {
-                response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
-                return false;
-            });
+        const oldFermentor = await fermentorRepository.findOne(request.body.id);
+        if (oldFermentor == undefined) {
+            response.status(404).send(new NotFoundError("Fermentor", `Fermentor ${request.body.id} was not found`).GenerateError());
+            return false;
+        }
+        fermentorRepository.merge(oldFermentor, request.body);
+        fermentorRepository.save(oldFermentor).then(updatedFermentor => {
+            response.status(200).send(updatedFermentor);
+            return true;
         }).catch(err => {
-            response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
+            response.status(400).send(new InternalError("Creating a new entry on Fermentor", err).GenerateError());
             return false;
         });
     }

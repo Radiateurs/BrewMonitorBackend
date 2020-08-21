@@ -74,23 +74,17 @@ export class BrewingController {
      * @param {NextFunction} next express next function
      * @return {bool} true on success (status code == 200) false on every other cases.
      */
-    static update = (request: Request, response: Response, next: NextFunction) => {
+    static update = async function(request: Request, response: Response, next: NextFunction) {
         const brewingRepository = getRepository(Brewing);
-        // Get the entry by ID
-        return brewingRepository.findOne(request.body.id).then(brewing => {
-            // Modify the field of the entry
-            brewing.fermentor = request.body.fermentor;
-            brewing.started = request.body.started;
-            brewing.receipe = request.body.receipe;
-            brewing.owner = request.body.owner;
-            // save the modified entry
-            return brewingRepository.save(brewing).then(brewing => {
-                response.status(200).send(brewing);
-                return true;
-            }).catch(err => {
-                response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
-                return false;
-            });
+        const oldBrewing = await brewingRepository.findOne(request.body.id);
+        if (oldBrewing == undefined) {
+            response.status(404).send(new NotFoundError("Brewing", `Brewing ${request.body.id} was not found`).GenerateError());
+            return false;
+        }
+        brewingRepository.merge(oldBrewing, request.body);
+        brewingRepository.save(oldBrewing).then(updatedBrewing => {
+            response.status(200).send(updatedBrewing);
+            return true;
         }).catch(err => {
             response.status(400).send(new InternalError("Creating a new entry on Brewing", err).GenerateError());
             return false;
