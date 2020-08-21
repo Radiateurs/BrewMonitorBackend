@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6164b20b-fdd5-46b8-9a46-b642edaa42c9",
+		"_postman_id": "993f72dd-2671-426c-a3f9-34f46f3659c8",
 		"name": "BeerMonitor",
 		"description": "API endpoints calls for BeerMonitor backend. ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -39,6 +39,85 @@
 							"path": [
 								"user",
 								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fermentor\":1,\r\n    \"receipe\": 2,\r\n    \"started\": \" 01/01/1970\",\r\n    \"owner\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/brewing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"brewing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"fermentor\": 1,\r\n    \"receipe\": 2,\r\n    \"started\": \"01/01/1970\",\r\n    \"owner\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/brewing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"brewing"
+							]
+						},
+						"description": "Update entry by its ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/brewing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"brewing"
 							]
 						}
 					},
@@ -93,7 +172,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Test\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"enmail\": \"test@test.test\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Test\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"email\": \"test@test.test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,6 +188,33 @@
 								"user"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"firstName\": \"Tester\",\r\n    \"lastName\": \"Tester\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"email\": \"test@test.test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "Update entry by its ID."
 					},
 					"response": []
 				},
@@ -186,7 +292,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Test\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"enmail\": \"test@test.test\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Fermentor_01\",\r\n    \"capacity\": 5,\r\n    \"owner\": 1,\r\n    \"brewing\": null,\r\n    \"temperature\": 23,\r\n    \"token\": \"abcdefg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,6 +308,33 @@
 								"fermentor"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"American Pale Ale Fermentor\",\r\n    \"capacity\": 5,\r\n    \"owner\": 1,\r\n    \"brewing\": null,\r\n    \"temperature\": 23,\r\n    \"token\": \"abcdefg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/fermentor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"fermentor"
+							]
+						},
+						"description": "Update entry by its ID."
 					},
 					"response": []
 				},
@@ -279,7 +412,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Test\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"enmail\": \"test@test.test\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Citra Hops\",\r\n    \"supplier\": \"Citra\",\r\n    \"origin\": \"America\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -295,6 +428,33 @@
 								"ingredient"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"The Citra Hops\",\r\n    \"supplier\": \"Citra\",\r\n    \"origin\": \"America\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ingredient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredient"
+							]
+						},
+						"description": "Update entry by its ID."
 					},
 					"response": []
 				},
@@ -319,99 +479,6 @@
 							],
 							"path": [
 								"ingredient"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Receipe",
-			"item": [
-				{
-					"name": "GetAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/receipe",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"receipe"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/receipe/4",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"receipe",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Test\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"enmail\": \"test@test.test\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/receipe",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"receipe"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete (by ID)",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 5\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/receipe",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"receipe"
 							]
 						}
 					},
@@ -465,7 +532,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Test\",\r\n    \"dateOfBirth\": \"01/01/1970\",\r\n    \"pass\": \"test\",\r\n    \"enmail\": \"test@test.test\"\r\n}",
+							"raw": "{\r\n    \"ingredient\": 2,\r\n    \"quantity\": 300,\r\n    \"unit\": \"g\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -481,6 +548,33 @@
 								"receipeingredient"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"ingredient\": 1,\r\n    \"quantity\": 500,\r\n    \"unit\": \"g\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/receipeingredient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"receipeingredient"
+							]
+						},
+						"description": "Update entry by its ID."
 					},
 					"response": []
 				},
@@ -505,6 +599,126 @@
 							],
 							"path": [
 								"receipeingredient"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Receipe",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/receipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"receipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/receipe/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"receipe",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"America Pale Ale\",\r\n    \"author\": 1,\r\n    \"creationDate\": \"01/01/1970\",\r\n    \"ingredients\": [ 1, 2 ],\r\n    \"dayFermenting\": 34,\r\n    \"dayBotteling\": 90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/receipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"receipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"ingredient\": 1,\r\n    \"quantity\": 500,\r\n    \"unit\": \"g\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/receipeingredient",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"receipeingredient"
+							]
+						},
+						"description": "Update entry by its ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/receipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"receipe"
 							]
 						}
 					},
