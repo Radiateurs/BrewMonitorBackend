@@ -17,16 +17,15 @@ export class Fermentor {
     public capacity: number;
 
     @ManyToOne(type => User, owner => owner.fermentors)
-    @JoinTable()
     public owner: User; 
-
-    @OneToOne(type => Brewing)
-    @JoinTable()
-    public brewing: Brewing;
 
     @Column()
     public temperature: number;
 
     @Column()
     public token: string;
+
+    @OneToOne(type => Brewing, { eager: true })
+    @JoinColumn()
+    public brewing: Brewing;
 }

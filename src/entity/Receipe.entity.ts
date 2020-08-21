@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany, JoinTable} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, JoinColumn, JoinTable } from "typeorm";
 import { PassThrough } from "stream";
 import { User } from "./User.entity";
 import { ReceipeIngredient } from "./ReceipeIngredient.entity";
@@ -19,7 +19,7 @@ export class Receipe {
     @Column()
     public creationDate: string;
 
-    @OneToOne(type => ReceipeIngredient)  
+    @OneToMany(type => ReceipeIngredient, receipeingredient => receipeingredient.receipe, { eager: true })
     public ingredients: ReceipeIngredient[];
 
     @Column()

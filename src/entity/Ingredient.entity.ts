@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { PassThrough } from "stream";
 
 @Entity()
@@ -15,5 +15,4 @@ export class Ingredient {
 
     @Column()
     public origin: string;
-
 }

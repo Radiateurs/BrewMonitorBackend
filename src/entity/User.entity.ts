@@ -1,6 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany } from "typeorm";
 import { PassThrough } from "stream";
 import { Fermentor } from "./Fermentor.entity";
+import { Brewing } from "./Brewing.entity";
 import bcrypt from "bcrypt-nodejs";
 
 @Entity()
@@ -36,10 +37,12 @@ export class User {
     @Column({ nullable: true })
     public email: string;
 
-    // User's fermentors
-    @OneToMany(type => Fermentor, fermentor => fermentor.owner, { nullable: true })
-    public fermentors: Fermentor[];
-
     @Column({ nullable: true })
     public token: string;
+
+    @OneToMany(type => Fermentor, fermentor => fermentor.owner, { eager: true } )
+    public fermentors: Fermentor[];
+
+    @OneToMany(type => Brewing, brewing => brewing.owner)
+    public brewings: Brewing[];
 }
