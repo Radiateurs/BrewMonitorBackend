@@ -6,6 +6,7 @@ const UserRouter = Router();
 UserRouter.get("/", UserController.getAll);
 UserRouter.get("/:id([0-9]+)", UserController.getOne);
 UserRouter.post("/", UserController.create);
+UserRouter.put("/", UserController.update);
 UserRouter.delete("/", UserController.remove);
 
 export default UserRouter;
