@@ -2,5 +2,29 @@
     "callback": {
         "google": "http://localhost:3030/auth/google",
         "facebook": "http://localhost:3030/auth/facebook"
-    }
+    },
+    "orm": {
+        "type": "postgres",
+        "database": "beer-monitor",
+        "host": "localhost",
+        "username": "test",
+        "password": "test",
+        "synchronize": true,
+        "logging": true,
+        "entities": [
+           "dist/**/*.entity.js"
+        ],
+        "migrations": [
+           "src/migration/**/*.ts"
+        ],
+        "subscribers": [
+           "src/subscriber/**/*.ts"
+        ],
+        "cli": {
+           "entitiesDir": "src/entity",
+           "migrationsDir": "src/migration",
+           "subscribersDir": "src/subscriber"
+        }
+    },
+    "port": 3000
 }
